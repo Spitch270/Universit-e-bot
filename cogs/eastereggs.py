@@ -5,16 +5,16 @@
 
 import discord
 import random
-from discord.ext import commands
+from discord.ext import commands, tasks
 
 class EasterEggs(commands.Cog): #création de la classe pour le cog
 
-    def __init__(self, universitebot): #connexion avec le bot 
+    def __init__(self, universitebot): #connexion avec le bot
         self.universitebot = universitebot
 
     @commands.Cog.listener() #Event dans un cog (obligatoire)
     async def on_ready(self): #lancement du bot en ligne
-        print('Le bot est pret') #indique que le bot est lancé.
+        print('Success')
 
     @commands.command() #Command dans un cog
     async def sardoche(self, ctx): #$sardoche envoie random une citation de sardoche

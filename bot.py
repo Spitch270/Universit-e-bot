@@ -6,12 +6,15 @@
 import discord #importation des modules discord
 import random  #importation du random
 import os #pour les cogs
-from discord.ext import commands #importation des fonctions pour discord bot
+from discord.ext import commands, tasks#importation des fonctions pour discord bot
+from itertools import cycle #importation de l'itération en cycle
 
 universitebot = commands.Bot(command_prefix = '$') #prefixe à utiliser pour intéragir avec le bot
+status = cycle(['Status 1', 'Status 2'])
 
 @universitebot.event #Déclarer à chaque fois que l'on veut une action du bot
 async def on_ready(): #lancement du bot en ligne
+    await universitebot.change_presence(status=discord.Status.idle, activity=discord.Game('Creation de tournoi...'))
     print('Le bot est pret') #indique que le bot est lancé.
 
 @universitebot.command() #Déclarer à chaque fois que l'on veut utiliser le bot
@@ -29,5 +32,7 @@ async def unload(ctx, extension):
 for filename in os.listdir('./cogs'):
     if filename.endswith('.py'):
         universitebot.load_extension(f'cogs.{filename[:-3]}')
+
+
 
 universitebot.run('Token')
