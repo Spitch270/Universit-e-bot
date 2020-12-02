@@ -10,7 +10,6 @@ from discord.ext import commands, tasks#importation des fonctions pour discord b
 from itertools import cycle #importation de l'itération en cycle
 
 universitebot = commands.Bot(command_prefix = '$') #prefixe à utiliser pour intéragir avec le bot
-status = cycle(['Status 1', 'Status 2'])
 
 @universitebot.event #Déclarer à chaque fois que l'on veut une action du bot
 async def on_ready(): #lancement du bot en ligne

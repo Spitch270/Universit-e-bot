@@ -23,5 +23,9 @@ class EasterEggs(commands.Cog): #création de la classe pour le cog
                      "POURQUOI ? POURQUOI ? POURQUOI ?"]
         await ctx.send(f'{random.choice(reponses)}') #envoie la réponse
 
+    @commands.command()
+    async def echo(self, ctx, *, arg):
+        await ctx.send(arg)
+
 def setup(universitebot):
     universitebot.add_cog(EasterEggs(universitebot))
