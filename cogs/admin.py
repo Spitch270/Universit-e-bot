@@ -2,7 +2,6 @@
 #Language : FR - French
 #Date : 01/12/2020
 #Copyright : This code can be use for every member working on 'Universit'E-Bot' discord bot only. If you want to work on it, please contact me : felicien.cuny@outlook.fr
-
 import discord
 from discord.ext import commands, tasks
 
@@ -47,7 +46,6 @@ class Admin(commands.Cog): #création de la classe pour le cog
                 await ctx.guild.unban(user)
                 await ctx.send(f'Unbanned {user.name}#{user.discriminator}')
                 return
-
 
 def setup(universitebot):
     universitebot.add_cog(Admin(universitebot))

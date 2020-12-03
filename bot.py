@@ -6,6 +6,10 @@
 import discord #importation des modules discord
 import random  #importation du random
 import os #pour les cogs
+import youtube_dl
+import requests
+from random import choice
+from discord.voice_client import VoiceClient
 from discord.ext import commands, tasks#importation des fonctions pour discord bot
 from itertools import cycle #importation de l'itération en cycle
 
@@ -18,7 +22,7 @@ async def on_ready(): #lancement du bot en ligne
 
 @universitebot.command() #Déclarer à chaque fois que l'on veut utiliser le bot
 async def ping(ctx): #ping = nom de la commande; exemple $ping pourra être utiliser sur discord pour trigger le bot
-    await ctx.send("Pong !")
+    await ctx.send(f'Pong ! Tu as une connexion de {round(universitebot.latency * 1000)}ms')
 
 @universitebot.command()
 async def load(ctx, extension):
@@ -28,10 +32,8 @@ async def load(ctx, extension):
 async def unload(ctx, extension):
     client.unload_extension(f'cogs.{extension}')
 
-for filename in os.listdir('./cogs'):
+for filename in os.listdir('./Universit-e-bot/cogs'):
     if filename.endswith('.py'):
         universitebot.load_extension(f'cogs.{filename[:-3]}')
-
-
 
 universitebot.run('Token')
