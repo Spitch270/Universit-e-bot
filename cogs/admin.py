@@ -19,22 +19,22 @@ class Admin(commands.Cog): #création de la classe pour le cog
         if isinstance(error, commands.MissingRequiredArgument):
             await ctx.send('Erreur Argument')
 
-    @commands.command()
+    @commands.command(help='permet de supprimer un nombre de message')
     @commands.has_permissions(manage_messages=True)
     async def clear(self, ctx, amount : int):
         await ctx.channel.purge(limit=amount+1)
 
-    @commands.command() #Command dans un cog
+    @commands.command(help='permet de kick un membre') #Command dans un cog
     @commands.has_permissions(administrator=True)
     async def kick(self, ctx, member : discord.Member, *, reason=None):
         await member.kick(reason=reason)
 
-    @commands.command() #Command dans un cog
+    @commands.command(help='permet de ban un membre') #Command dans un cog
     @commands.has_permissions(administrator=True)
     async def ban(self, ctx, member : discord.Member, *, reason=None):
         await member.ban(reason=reason)
 
-    @commands.command()
+    @commands.command(help='permet de deban un membre')
     @commands.has_permissions(administrator=True)
     async def unban(self, ctx, *, member):
         banned_users = await ctx.guild.bans()

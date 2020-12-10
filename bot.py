@@ -6,8 +6,9 @@
 import discord #importation des modules discord
 import random  #importation du random
 import os #pour les cogs
-import youtube_dl
-import requests
+import youtube_dl #permet le téléchargement youtube
+import requests #permet l'API
+import json #utiliser l'API
 from random import choice
 from discord.voice_client import VoiceClient
 from discord.ext import commands, tasks#importation des fonctions pour discord bot
@@ -20,17 +21,23 @@ async def on_ready(): #lancement du bot en ligne
     await universitebot.change_presence(status=discord.Status.idle, activity=discord.Game('Creation de tournoi...'))
     print('Le bot est pret') #indique que le bot est lancé.
 
-@universitebot.command() #Déclarer à chaque fois que l'on veut utiliser le bot
+@universitebot.command(help='Permet de connaitre sa latence') #Déclarer à chaque fois que l'on veut utiliser le bot
 async def ping(ctx): #ping = nom de la commande; exemple $ping pourra être utiliser sur discord pour trigger le bot
     await ctx.send(f'Pong ! Tu as une connexion de {round(universitebot.latency * 1000)}ms')
 
 @universitebot.command()
 async def load(ctx, extension):
-    client.load_extension(f'cogs.{extension}')
+    universitebot.load_extension(f'cogs.{extension}')
 
 @universitebot.command()
 async def unload(ctx, extension):
-    client.unload_extension(f'cogs.{extension}')
+    universitebot.unload_extension(f'cogs.{extension}')
+
+@universitebot.command()
+async def poll(ctx, *, arg):
+    message = await ctx.send(arg)
+    await message.add_reaction('✅')
+    await message.add_reaction('❎')
 
 for filename in os.listdir('./Universit-e-bot/cogs'):
     if filename.endswith('.py'):

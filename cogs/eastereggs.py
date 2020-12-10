@@ -16,14 +16,14 @@ class EasterEggs(commands.Cog): #création de la classe pour le cog
     async def on_ready(self): #lancement du bot en ligne
         print('Success')
 
-    @commands.command() #Command dans un cog
+    @commands.command(help='balance une citation de sardoche au hasard') #Command dans un cog
     async def sardoche(self, ctx): #$sardoche envoie random une citation de sardoche
         reponses = ["Mais c'était sûr en fait !",
                      "Il est mort, le noir est mort",
                      "POURQUOI ? POURQUOI ? POURQUOI ?"]
         await ctx.send(f'{random.choice(reponses)}') #envoie la réponse
 
-    @commands.command()
+    @commands.command(help='le bot repete le message')
     async def echo(self, ctx, *, arg):
         await ctx.send(arg)
 
